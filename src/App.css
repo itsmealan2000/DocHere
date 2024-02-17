@@ -1,5 +1,5 @@
 .navlogo{
-  width: 50px;
+  width: 3%;
 }
 .liri{
   border-right: 1px solid;
@@ -44,7 +44,7 @@
 }
 .docsmain{
   background-color: #FDF7FF;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +67,7 @@ select {
 }
 .login{
   background-color: #FDF7FF;
-  height: 80vh;
+  height: 110vh;
 }
 .login1{
   display: flex;

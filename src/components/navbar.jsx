@@ -1,8 +1,41 @@
-import React from 'react'
+import React,{useContext} from 'react';
+import { UserContext } from '../App';
+const Navbar = () => { 
+  const { state, dispatch } = useContext(UserContext);
+  console.log(state);
+    const RenderMenu = () => {
+      if ( state) {
+        return (
+          <>
+        <ul className="navbar-nav ms-auto" >
+        <li className="nav-item liri">
+            <button className='btn pnkbtn'><a className="nav-link active " href="/Profile">Profile <i class="las la-sign-in-alt"></i></a></button>
+          </li>
+          <li className="nav-item lili">
+            <button className='btn pnkbtn'><a className="nav-link active" href="/logout">logout <i class="las la-user-check"></i></a></button>
+          </li>
+        </ul>
+          </>
+        )
+      } 
+      {
+        return (
+          <>
+        <ul className="navbar-nav ms-auto" >
+        <li className="nav-item liri">
+            <button className='btn pnkbtn'><a className="nav-link active " href="/login" >Login <i class="las la-sign-in-alt"></i></a></button>
+          </li>
+          <li className="nav-item lili">
+            <button className='btn pnkbtn'><a className="nav-link active" href="/signup" >Sign Up <i class="las la-user-check"></i></a></button>
+          </li>
+        </ul>
+          </>
+        )
+      }
+    }
 
-function navbar() {
   return (
-    <nav className="navbar navbar-expand-sm  rounded" >
+    <nav className="navbar navbar-expand-md  rounded" >
     <div className="container-fluid">
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
@@ -21,18 +54,11 @@ function navbar() {
             <button className='btn'><a className="nav-link active" href="/pharmacy">Pharmacy <i class="las la-prescription-bottle-alt"></i></a></button>
           </li>
         </ul>
-        <ul className="navbar-nav ms-auto" >
-        <li className="nav-item liri">
-            <button className='btn pnkbtn'><a className="nav-link active " href="/login">Login <i class="las la-sign-in-alt"></i></a></button>
-          </li>
-          <li className="nav-item lili">
-            <button className='btn pnkbtn'><a className="nav-link active" href="/signup">Sign Up <i class="las la-user-check"></i></a></button>
-          </li>
-        </ul>
+        <RenderMenu/>
       </div>
     </div>
   </nav>
   )
 }
 
-export default navbar
+export default Navbar;

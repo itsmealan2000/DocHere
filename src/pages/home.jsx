@@ -1,6 +1,5 @@
-import React from 'react'
-
-function home() {
+import React, {useContext} from 'react'
+const home = () => {
   return (
     <section className='main w-100 container-fluid rounded'>
     <div className='container-fluid mt-1 '>
