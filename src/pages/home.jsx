@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React from 'react'
 const home = () => {
   return (
     <section className='main w-100 container-fluid rounded'>
@@ -15,7 +15,6 @@ const home = () => {
       </div>
     </div>
   </section>
-  
   )
 }
 

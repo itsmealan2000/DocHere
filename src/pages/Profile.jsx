@@ -1,14 +1,10 @@
 import React from 'react'
 
 function Profile() {
-  const recieveProfile =(e)=>{
-    e.preventDefault();
-  }
-
   return (
-      <>
-        
-      </>
+    <>
+      <h1>Profile</h1>
+    </>
   )
 }
 

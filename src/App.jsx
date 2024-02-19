@@ -14,7 +14,7 @@ import Logout from './pages/logout';
 
 import {initialState,reducer} from '../src/reducer/UseReducer';
 
-import { Routes,Route,Link  } from 'react-router-dom';
+import { Routes,Route  } from 'react-router-dom';
 
 
 export const UserContext = createContext();

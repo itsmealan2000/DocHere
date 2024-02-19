@@ -74,6 +74,21 @@ select {
   align-items: center;
   justify-content: center;
 }
+
+.profilebody{
+  background-color: #FDF7FF;
+  height: 100vh;
+}
+.userbody{
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid #3ab658;
+}
+
+
 /* media  */
 @media (max-width: 600px){
   .navlogo{
