@@ -11,8 +11,12 @@ import Admin from './pages/admin';
 import Pharmacy from './pages/pharmacy';
 import Profile from './pages/Profile';
 import Logout from './pages/logout';
+//componetspages
+import DoctorManage from './components/DoctorManage';
 
-import {initialState,reducer} from '../src/reducer/UseReducer';
+
+
+import {initialState,userEmail,reducer,useremailreducer} from '../src/reducer/UseReducer';
 
 import { Routes,Route  } from 'react-router-dom';
 
@@ -21,11 +25,11 @@ export const UserContext = createContext();
 const App = () => {
   
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [useremail, dispatch1] = useReducer(useremailreducer, userEmail);
   return (
     <>
     <div className='w-100 nvbg p-2'>
-      <UserContext.Provider value = {{state, dispatch}}>
+      <UserContext.Provider value = {{state,useremail, dispatch,dispatch1}}>
      <Navbar/>
      <Routes>
   
@@ -38,6 +42,7 @@ const App = () => {
         <Route path='/pharmacy' element={<Pharmacy/>}/>
         <Route path='/Profile' element={<Profile/>}/>
         <Route path='/logout' element={<Logout/>}/>
+        <Route path='/DoctorManage' element={<DoctorManage/>}/>
 
      </Routes>
      <Footer/>

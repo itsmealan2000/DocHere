@@ -6,6 +6,7 @@ import { UserContext } from '../App';
 
 const login =()=> {
   const {state, dispatch} = useContext(UserContext);
+  const {useremail,dispatch1} = useContext(UserContext);
   
   // State for the input fields and button
   const [userData, setUserData] = useState({
@@ -29,6 +30,9 @@ const login =()=> {
           // Display success message
           toast.success("Login successful");
           dispatch({ type: "USER", payload: true })
+          localStorage.setItem("username",{email});
+          dispatch1({ type: "USEREMAIL", payload: email })
+          console.log({email});
           // Redirect to home page after a short delay
           setTimeout(() => {
             window.location.href = "/";
