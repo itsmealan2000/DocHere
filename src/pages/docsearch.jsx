@@ -10,7 +10,12 @@ function DocSearch() {
     const fetchSearchResults = async () => {
       try {
         const response = await getDoctorApi({ search: query });
-        setSearchResults(response.data);
+        // Filter search results based on the query
+        const filteredResults = response.data.filter(doctor => 
+          doctor.docname.toLowerCase().includes(query.toLowerCase()) || 
+          doctor.speciality.toLowerCase().includes(query.toLowerCase())
+        );
+        setSearchResults(filteredResults);
       } catch (error) {
         console.error('Error fetching search results:', error);
       }
@@ -18,8 +23,15 @@ function DocSearch() {
 
     if (query.trim() !== '') {
       fetchSearchResults();
-    } else {
-      setSearchResults([]); // Clear search results if the query is empty
+    }else {
+      // Show all doctors when the query is empty
+      getDoctorApi()
+        .then(response => {
+          setSearchResults(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching all doctors:', error);
+        });
     }
   }, [query]);
 
@@ -48,16 +60,14 @@ function DocSearch() {
                   value={query}
                   onChange={handleInputChange}
                 />
-                <div className="input-group-append m-1">
-                  <button className="btn greenbtn" type="button">Search</button>
-                </div>
+                {/* Removed the search button */}
               </div>
             </form>
             {/* Display search results */}
-            <div className='container-fluid'>
+            <div className='container searchresults'>
               {searchResults.map((doctor) => (
                 <div key={doctor.id}>
-                  <h3>{doctor.docname}</h3>
+                  <h3 >{doctor.docname} <span>{doctor.available}</span></h3>
                   <p>{doctor.speciality}</p>
                   {/* Add more information about the doctor as needed */}
                 </div>

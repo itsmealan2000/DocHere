@@ -1,76 +1,73 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { searchMedicineApi } from '../Services/AllApi';
 
-function pharmacy() {
+function Pharmacy() {
+  const [medicines, setMedicines] = useState([]);
+  const [search, setSearch] = useState('');
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await searchMedicineApi(search);
+        // Assuming the API response contains an array of medicines
+        setMedicines(result.data);
+      } catch (error) {
+        console.error('Error fetching medicines:', error);
+      }
+    };
+    
+    fetchData(); // Always fetch data regardless of the search term
+  }, [search]);
+  
+  const handleInputChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  // Filter the medicines array based on the search term
+  const filteredMedicines = medicines.filter(medicine =>
+    medicine.medicinename.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className='main mt-2 p-1 text-center container-fluid rounded'>
       <h1>Pharmacy</h1>
       <p>This is the Pharmacy page.</p>
-      {/* find your medicines  */}
-      <form method="get" action="/docsearch">
-        <div className="input-group mb-3">
-          <input type="text" className="form-control rounded" placeholder="Search for medicines" name="search" />
-          <div className="input-group-append m-1">
-            <button className="btn greenbtn" type="submit">Search</button>
+      {/* Find your medicines */}
+      <div className='w-50 ms-auto me-auto'>
+        <form>
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control rounded"
+              placeholder="Search for medicines"
+              value={search}
+              onChange={handleInputChange}
+            />
+            {/* Removed the submit button */}
           </div>
+        </form>
+        <div className='searchresults' >
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Medicine</th>
+                <th>Price</th>
+                <th>Stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredMedicines.map((medicine) => (
+                <tr key={medicine.id}>
+                  <td>{medicine.medicinename}</td>
+                  <td>{medicine.Price}</td>
+                  <td>{medicine.stock}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </form>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Medicine</th>
-            <th>Price</th>
-            <th>Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Paracetamol</td>
-            <td>₹50</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Aspirin</td>
-            <td>₹100</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Amoxicillin</td>
-            <td>₹150</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Hydrocodone</td>
-            <td>₹200</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Acetaminophen</td>
-            <td>₹250</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Codeine</td>
-            <td>₹300</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Morphine</td>
-            <td>₹350</td>
-            <td>Available</td>
-          </tr>
-        </tbody>
-      </table>
-      {/* find prescription */}
-      <form method="get" action="/docsearch">
-        <div className="input-group mb-3">
-          <input type="text" className="form-control rounded" placeholder="Search your prescription #bill123" name="search" />
-          <div className="input-group-append m-1">
-            <button className="btn greenbtn" type="submit">Search</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-  )
+  );
 }
 
-export default pharmacy
+export default Pharmacy;

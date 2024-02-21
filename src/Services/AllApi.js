@@ -22,3 +22,20 @@ export const addDoctorApi = async (doctor)=>{
 export const getDoctorApi = async (doctor)=>{
     return await commonApi("GET",`${SERVER_URL}/getdoctor`, doctor, "")
 }
+
+//pharmacy
+export const addMedicineApi = async (medicine)=>{
+    return await commonApi("POST",`${SERVER_URL}/addmedicine`, medicine, "")
+}
+
+export const removeMedicineApi = async (medicine)=>{
+    return await commonApi("DELETE",`${SERVER_URL}/removemedicine`, medicine, "")
+}
+
+export const searchMedicineApi = (medicine)=> {
+    return commonApi("GET", `${SERVER_URL}/searchmedicine`, medicine, "");
+}
+
+export const changeStockApi = async (medicine)=>{
+    return await commonApi("PUT",`${SERVER_URL}/changestock`, medicine, "")
+}

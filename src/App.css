@@ -99,6 +99,37 @@ select {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
+.searchresults {
+  background-color: lightcyan;
+  max-height: 300px; /* Set a maximum height for the container */
+  overflow-y: auto; /* Add vertical scroll if content exceeds container height */
+  border: 1px solid #ccc; /* Add border for visual separation */
+  padding: 10px; /* Add padding for spacing */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.searchresults > div {
+  margin-bottom: 15px; /* Add margin between individual search results */
+}
+
+.searchresults h3 {
+  margin-top: 0; 
+  position: relative;
+}
+.searchresults h3 span {
+  font-size: 14px; /* Reduce font size of span */
+  color: #666; /* Change color of span */
+  position: absolute;
+  right: 0;
+  margin-right: 25%; /* Add margin to the left of span */
+  font-weight: normal; /* Remove bold font weight */
+  color: #3ab658;
+}
+
+.searchresults p {
+  margin-bottom: 5px; /* Add margin below paragraph */
+}
+
 
 /* media  */
 @media (max-width: 600px){

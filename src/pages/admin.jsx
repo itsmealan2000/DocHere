@@ -8,31 +8,10 @@ function admin() {
       <hr />
       <h1>To Manage Doctors</h1>
       <button className='btn btn-primary'><a href="/DoctorManage" className='nav-link active'>Doctor Manage</a></button>
-        <form action="">
-        <h1>ADD MEDICINES FOR PHARMACY</h1>
-        {/* add remove medicines */}
-        <div className="form-group">
-          <label for="name">Name:</label>
-          <input type="text" className="form-control" id="name" name="name" required />
-        </div>
-        <div className="form-group">
-          <label for="price">Price:</label>
-          <input type="text" className="form-control" id="price" name="price" required />
-        </div>
-        <div className="form-group">
-          <label for="stock">Stock:</label>
-          <input type="text" className="form-control" id="stock" name="stock" required />
-        </div>
-        <button type="submit" className="btn greenbtn mt-2">Add</button>
-        <hr />
-        <h1>Remove medicine</h1>
-        {/* remove  */}
-        <div className="form-group">
-          <label for="name">Name:</label>
-          <input type="text" className="form-control" id="name" name="name" required />
-        </div>
-        <button type="submit" className="btn greenbtn mt-2">Remove</button>
-        <hr />
+      <hr />
+      <h1>To Manage Medicines </h1>
+      <button className='btn btn-primary'><a href="/MedicineManage" className='nav-link active'>Medicine Manage</a></button>
+      <form action="">
         <h1>Add Patient Bill</h1>
         {/* add remove patient bill */}
         <div className="form-group">

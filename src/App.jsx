@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Logout from './pages/logout';
 //componetspages
 import DoctorManage from './components/DoctorManage';
+import MedicineManage from './components/MedicineManage';
 
 
 
@@ -43,7 +44,7 @@ const App = () => {
         <Route path='/Profile' element={<Profile/>}/>
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/DoctorManage' element={<DoctorManage/>}/>
-
+        <Route path='/MedicineManage' element={<MedicineManage/>}/>
      </Routes>
      <Footer/>
      </UserContext.Provider>
