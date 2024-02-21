@@ -1,5 +1,6 @@
 import React,{useContext} from 'react';
 import { UserContext } from '../App';
+import navimg from '../assets/logos/logo.png';
 const Navbar = () => { 
   const { state, dispatch } = useContext(UserContext);
   console.log(state);
@@ -41,7 +42,7 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse mt-1" id="navbarTogglerDemo01">
-      <img src="src/assets/logos/logo.png" alt="" className='img-fluid navlogo' />
+      <img src={navimg} alt="" className='img-fluid navlogo' />
         <a className="navbar-brand ms-3" href="/">Doc<span className='here'>Here</span></a>
         <ul className="navbar-nav ms-auto me-1">
           <li className="nav-item liri">

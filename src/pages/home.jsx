@@ -1,4 +1,5 @@
 import React from 'react'
+import homeimg from '../assets/homepage/welcomepage.gif'
 const home = () => {
   return (
     <section className='main w-100 container-fluid rounded'>
@@ -10,7 +11,7 @@ const home = () => {
           <button className='btn pnkbtn'><a className='nav-link active' href='/docsearch'>Find Doctor</a></button>
         </div>
         <div className='col-md-6 d-flex  flex-column justify-content-center align-items-start vh-100'>
-          <img src="src/assets/homepage/welcomepage.gif" alt="" className='img-fluid w-75 gifimg' />
+          <img src={homeimg} alt="" className='img-fluid w-75 gifimg' />
         </div>
       </div>
     </div>
