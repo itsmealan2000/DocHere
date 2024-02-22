@@ -7,8 +7,6 @@ function Admin() {
   const [authenticated, setAuthenticated] = useState(false);
 
   const handleLogin = () => {
-    // Here you can implement your authentication logic
-    // For simplicity, let's assume a hardcoded admin ID and password
     const hardcodedAdminId = 'admin123';
     const hardcodedPassword = 'admin123';
 
@@ -21,7 +19,6 @@ function Admin() {
 
   const handleLogout = () => {
     setAuthenticated(false);
-    // You can add additional logout logic here if needed
   };
 
   return (

@@ -11,21 +11,19 @@ function Pharmacy() {
     const fetchData = async () => {
       try {
         const result = await searchMedicineApi(search);
-        // Assuming the API response contains an array of medicines
         setMedicines(result.data);
       } catch (error) {
         console.error('Error fetching medicines:', error);
       }
     };
     
-    fetchData(); // Always fetch data regardless of the search term
+    fetchData();
   }, [search]);
   
   const handleInputChange = (event) => {
     setSearch(event.target.value);
   };
 
-  // Filter the medicines array based on the search term
   const filteredMedicines = medicines.filter(medicine =>
     medicine.medicinename.toLowerCase().includes(search.toLowerCase())
   );

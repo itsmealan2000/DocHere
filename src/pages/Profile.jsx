@@ -12,21 +12,19 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      try {
-        // Fetch user profile data from the backend API
+      try {I
         const response = await fetch(`${SERVER_URL}/profile?email=${useremail}`);
         
-        // Check if response is successful
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
 
-        // Parse the JSON data from the response body
         const data = await response.json();
         
         //dispatch2
         localStorage.setItem("username", data.username);
         dispatch2({ type: "USERNAME", payload: data.username });
+        
         // Set the user name, age, and gender in the state
         setUserName(data.username); 
         setUserAge(data.age);

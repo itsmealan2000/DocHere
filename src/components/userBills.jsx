@@ -10,30 +10,23 @@ function UserBills() {
     console.log("usernames",usernames);
     const fetchUserBills = async () => {
       try {
-        // Fetch user bills based on usernames
         const userBillsResponse = await getUserBillApi(usernames);
         
-        console.log('userBillsResponse:', userBillsResponse); // Log the response to see its structure
+        console.log('userBillsResponse:', userBillsResponse); 
     
-        // Check if the data property of the response is an array
         if (!Array.isArray(userBillsResponse.data)) {
           throw new Error('Data fetched is not an array');
         }
     
-        // Filter user bills that match with usernames
         const filteredBills = userBillsResponse.data.filter(bill => bill.username === usernames);
     
-        // Set the filtered bills in state
         setBills(filteredBills);
       } catch (error) {
-        // Handle errors
         console.error('Error fetching user bills:', error);
-        // Notify the user about the error
         toast.error('Error fetching user bills');
       }
     };
     
-    // Call the fetchUserBills function when component mounts
     useEffect(() => {
       fetchUserBills();
     }, [usernames]);

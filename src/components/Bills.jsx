@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { searchMedicineApi, getAllUsersApi, addBillApi } from '../Services/AllApi'; // Import addBillApi
+import { searchMedicineApi, getAllUsersApi, addBillApi } from '../Services/AllApi';
 import { UserContext } from '../App';
 
 function Bills() {
@@ -9,9 +9,9 @@ function Bills() {
     const [medicines, setMedicines] = useState([]);
     const [search, setSearch] = useState('');
     const [usernames, setUsernames] = useState([]);
-    const [username, setUsername] = useState(''); // State to store selected username
-    const [selectedMedicines, setSelectedMedicines] = useState([]); // State to store selected medicines
-    const [total, setTotal] = useState(0); // State to store total price
+    const [username, setUsername] = useState(''); 
+    const [selectedMedicines, setSelectedMedicines] = useState([]); 
+    const [total, setTotal] = useState(0); 
 
     useEffect(() => {
         const fetchMedicines = async () => {
@@ -53,10 +53,8 @@ function Bills() {
     const handleMedicineSelect = (medicine) => {
         setSelectedMedicines(prevSelectedMedicines => {
             if (prevSelectedMedicines.find(item => item.medicinename === medicine.medicinename)) {
-                // If the medicine is already selected, remove it from the array
                 return prevSelectedMedicines.filter(item => item.medicinename !== medicine.medicinename);
             } else {
-                // If the medicine is not selected, add it to the array
                 return [...prevSelectedMedicines, medicine];
             }
         });
@@ -65,7 +63,7 @@ function Bills() {
     const calculatetotal = () => {
         let total = 0;
         selectedMedicines.forEach(medicine => {
-            total += medicine.Price; // Assuming the price field is available in the medicine object
+            total += medicine.Price; 
         });
         setTotal(total);
     };
@@ -81,10 +79,8 @@ function Bills() {
         }
 
         try {
-            // Assuming addBillApi expects an object with username and selectedMedicines array
             await addBillApi({ username: username, selectedMedicines, total });
             toast.success('Bill added successfully.');
-            // You can optionally reset username and selectedMedicines state here
         } catch (error) {
             console.error('Error adding bill:', error);
             toast.error('Failed to add bill. Please try again later.');

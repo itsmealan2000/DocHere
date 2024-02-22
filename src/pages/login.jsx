@@ -24,7 +24,6 @@ const login =()=> {
         const result = await loginApi(userData);
         console.log(result);
         if (result.status === 200) {
-          // Login successful
           // Clear the form fields
           setUserData({ email: "", password: "" });
           // Display success message
@@ -51,7 +50,6 @@ const login =()=> {
 
   return (
       <div className="container-fluid mt-2 rounded p-2 login">
-      {/* login with google also  */}
         <div className='row'>
         <h2 className='text-center'>Login</h2>
         <hr className='border border-5 rounded' />
