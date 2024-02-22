@@ -27,6 +27,10 @@ export const getDoctorApi = async (doctor)=>{
     return await commonApi("GET",`${SERVER_URL}/getdoctor`, doctor, "")
 }
 
+export const removeDoctorApi = async (doctor)=>{
+    return await commonApi("DELETE",`${SERVER_URL}/removedoctor`, doctor, "")
+}
+
 //pharmacy
 export const addMedicineApi = async (medicine)=>{
     return await commonApi("POST",`${SERVER_URL}/addmedicine`, medicine, "")
@@ -51,4 +55,8 @@ export const addBillApi = async (bill)=>{
 
 export const getUserBillApi = async (bill)=>{
     return await commonApi("GET",`${SERVER_URL}/getuserbill`, bill, "")
+}
+
+export const removeBillApi = async (bill)=>{
+    return await commonApi("DELETE",`${SERVER_URL}/removebill`, bill, "")
 }

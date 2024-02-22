@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addDoctorApi } from "../Services/AllApi";
+import { addDoctorApi,removeDoctorApi } from "../Services/AllApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -33,7 +33,35 @@ function DoctorManage() {
         alert(`Something went wrong ${err.message || err}`);
       }
     }
-  };
+  }
+
+    const removeDoctor = async (e) => {
+    e.preventDefault();
+    console.log(doctorData);
+    const { docname } = doctorData;
+    if (!docname) {
+      alert("Please fill all the fields");
+    } else {
+      try {
+        const result = await removeDoctorApi(doctorData);
+        console.log(result);
+        if (result.status === 200) {
+          setDoctorData({ docname: "", speciality: "", available: "" });
+          toast.success(
+            `${result.data.username } has been removed Successfully`
+          );
+        } else {
+          alert("Doctor not found");
+        }
+      } catch (err) {
+        console.error(err);
+        alert(`Something went wrong ${err.message || err}`);
+      }
+    }
+  }
+  
+
+
   return (
     <>
     <div className='main m-2 p-5 rounded fs-5'>
@@ -52,7 +80,7 @@ function DoctorManage() {
         onChange={(e) => setDoctorData({ ...doctorData, docname: `${inital}${e.target.value}` })}
        />
      </div>
-{/* specification of doctor */}
+      {/* specification of doctor */}
         <div className="form-group">
         <label htmlFor="specialization">Specialization:</label>
         <select className="form-control" id="specialization" name="specialization" required
@@ -100,9 +128,10 @@ function DoctorManage() {
      {/* remove  */}
      <div className="form-group">
        <label for="name">Name:</label>
-       <input type="text" className="form-control" id="name" name="name" required />
+       <input type="text" className="form-control" id="name" name="name" required 
+       onChange={(e) => setDoctorData({ ...doctorData, docname: `${inital}${e.target.value}` })}/>
      </div>
-     <button type="submit" className="btn greenbtn mt-2">Remove</button>
+     <button type="submit" className="btn greenbtn mt-2" onClick={removeDoctor}>Remove</button>
 
      </form>
      <ToastContainer />

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { searchMedicineApi, getAllUsersApi, addBillApi } from '../Services/AllApi';
+import { searchMedicineApi, getAllUsersApi, addBillApi, removeBillApi } from '../Services/AllApi'; // Import removeBillApi
 import { UserContext } from '../App';
 
 function Bills() {
@@ -80,13 +80,29 @@ function Bills() {
 
         try {
             await addBillApi({ username: username, selectedMedicines, total });
-            toast.success('Bill added successfully.');
+            toast.success(`${username} added successfully.`);
         } catch (error) {
             console.error('Error adding bill:', error);
             toast.error('Failed to add bill. Please try again later.');
         }
     };
 
+    const removebill = async () => {
+        if (!username) {
+            toast.error('Please enter a patient name.');
+            return;
+        }
+        try {
+            console.log('Removing bill...');
+            await removeBillApi({ username });
+            console.log('Bill removed successfully.');
+            toast.success(`${username}Bill removed successfully.`);
+        } catch (error) {
+            console.error('Error removing bill:', error);
+            toast.error('Failed to remove bill. Please try again later.');
+        }
+    }
+    
     return (
         <>
             <div className='main m-2 p-5 rounded'>
@@ -113,21 +129,23 @@ function Bills() {
                         </div>
                         <label htmlFor="name">Medicine Name:</label><br />
                         <div className="form-check">
-                        {filteredMedicines.map((medicine) => (
-                            <div key={medicine.id} className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id={`checkbox_${medicine.id}`}
-                                onChange={() => handleMedicineSelect(medicine)}
-                                checked={selectedMedicines.find((item) => item.medicinename === medicine.medicinename)}
-                            />
-                            <label className="form-check-label" htmlFor={`checkbox_${medicine.id}`}>
-                                {medicine.medicinename}
-                            </label>
-                            </div>
-                        ))}
-                        </div>
+                        {filteredMedicines
+                            .filter(medicine => typeof medicine.Price === 'number' && !isNaN(medicine.Price)) // Filter out medicines with Price as NaN
+                            .map((medicine) => (
+                                <div key={medicine.id} className="form-check">
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        id={`checkbox_${medicine.id}`}
+                                        onChange={() => handleMedicineSelect(medicine)}
+                                        checked={selectedMedicines.find((item) => item.medicinename === medicine.medicinename)}
+                                    />
+                                    <label className="form-check-label" htmlFor={`checkbox_${medicine.id}`}>
+                                        {medicine.medicinename}
+                                    </label>
+                                </div>
+                            ))}
+                    </div>
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Total:</label>
@@ -138,12 +156,18 @@ function Bills() {
                     <h1>Remove Patient Bill</h1>
                     <div className="form-group">
                         <label htmlFor="name">Patient Name:</label>
-                        <input type="text" className="form-control" id="name" name="name" required />
+                        <select className="form-control" name="username" id="username" onChange={handleUsernameChange}>
+                            <option value="">Select Patient</option>
+                            {usernames.map((username, index) => (
+                            <option key={index} value={username}>{username}</option>
+                            ))}
+                        </select>
                     </div>
-                    <button type="submit" className="btn greenbtn mt-2">Remove</button>
+                    <button type="submit" className="btn greenbtn mt-2" onClick={removebill}>Remove</button>
                     <hr />
                 </form>
             </div>
+            <ToastContainer />
         </>
     )
 }
