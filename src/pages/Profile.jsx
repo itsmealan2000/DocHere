@@ -40,21 +40,23 @@ const Profile = () => {
   }, [useremail]); 
 
   return (
-      <div class='container profilebody m-3 p-5 rounded d-flex flex-column justify-content-center align-items-center'>
-        <h1 class='text-center'>{userName}'s Profile</h1>
-        <div class='container border border-2 rounded p-5 m-5 w-50 fs-2 profileholder'>
-          <div class=''>
-            <p>Email: {useremail}</p>
-            <p>Age: {userAge}</p>
-            <p>Gender: {userGender}</p>
+    <>
+        <div class='container-fluid profilebody mt-2 p-5 rounded d-flex flex-column justify-content-center align-items-center'>
+          <h1 class='text-center'>{userName}'s Profile</h1>
+          <div class='container-fluid border border-2 rounded p-3 w-75 fs-1 profileholder'>
+            <div class=''>
+              <p>Email: {useremail}</p>
+              <p>Age: {userAge}</p>
+              <p>Gender: {userGender}</p>
+            </div>
+            <button class='btn greenbtn'>
+              <a href="/userbills" class='nav-link active'>
+                View My Prescription
+              </a>
+            </button>
           </div>
-          <button class='btn greenbtn'>
-            <a href="/userbills" class='nav-link active'>
-              View My Prescription
-            </a>
-          </button>
         </div>
-      </div>
+        </>
   );
 };
 

@@ -91,12 +91,17 @@ select {
   border: 2px solid #3ab658;
 }
 .profileholder{
-  background: rgba( 255, 255, 255, 0.2 );
+    background: rgba( 255, 255, 255, 0.2 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7px );
     -webkit-backdrop-filter: blur( 7px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+    max-width: 100%; 
+    overflow: hidden; 
+}
+.profileholder > div {
+  max-width: 100%; 
 }
 
 .searchresults {
@@ -135,5 +140,18 @@ select {
 @media (max-width: 600px){
   .navlogo{
     width: 15%;
+  }
+}
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .profileholder p {
+    font-size: 20px; /* Reduce font size for smaller screens */
+  }
+}
+
+/* Media query for even smaller screens */
+@media screen and (max-width: 576px) {
+  .profileholder p {
+    font-size: 12px; /* Further reduce font size for very small screens */
   }
 }
