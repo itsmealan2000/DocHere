@@ -14,10 +14,12 @@ import Logout from './pages/logout';
 //componetspages
 import DoctorManage from './components/DoctorManage';
 import MedicineManage from './components/MedicineManage';
+import Bills from './components/Bills';
+import Userbill from './components/userBills';
 
 
 
-import {initialState,userEmail,reducer,useremailreducer} from '../src/reducer/UseReducer';
+import {initialState,userEmail,reducer,useremailreducer, userNames, usernameReducer} from '../src/reducer/UseReducer';
 
 import { Routes,Route  } from 'react-router-dom';
 
@@ -27,10 +29,11 @@ const App = () => {
   
   const [state, dispatch] = useReducer(reducer, initialState);
   const [useremail, dispatch1] = useReducer(useremailreducer, userEmail);
+  const [usernames, dispatch2] = useReducer(usernameReducer, userNames);
   return (
     <>
     <div className='w-100 nvbg p-2'>
-      <UserContext.Provider value = {{state,useremail, dispatch,dispatch1}}>
+      <UserContext.Provider value = {{state,useremail,usernames, dispatch,dispatch1,dispatch2}}>
      <Navbar/>
      <Routes>
   
@@ -45,6 +48,8 @@ const App = () => {
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/DoctorManage' element={<DoctorManage/>}/>
         <Route path='/MedicineManage' element={<MedicineManage/>}/>
+        <Route path='/Bills' element={<Bills/>}/>
+        <Route path='/userbills' element={<Userbill/>}/>
      </Routes>
      <Footer/>
      </UserContext.Provider>

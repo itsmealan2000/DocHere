@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { searchMedicineApi } from '../Services/AllApi';
+import { UserContext  } from "../App";
 
 function Pharmacy() {
   const [medicines, setMedicines] = useState([]);
   const [search, setSearch] = useState('');
+  const { useremail, dispatch1 } = useContext(UserContext);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,6 +29,24 @@ function Pharmacy() {
   const filteredMedicines = medicines.filter(medicine =>
     medicine.medicinename.toLowerCase().includes(search.toLowerCase())
   );
+
+    const { state, dispatch } = useContext(UserContext);
+  console.log(state);
+    const Renderbtn = () => {
+      if ( state) {
+        return (
+          <>
+          <button className='btn greenbtn'><a href="/userbills" className='nav-link active'>View My Prescription</a></button>
+          </>
+        )
+      } 
+      {
+        return (
+          <>
+          </>
+        )
+      }
+    }
 
   return (
     <div className='main mt-2 p-1 text-center container-fluid rounded'>
@@ -65,6 +86,10 @@ function Pharmacy() {
             </tbody>
           </table>
         </div>
+      </div>
+      {/* mybill  */}
+      <div className='mt-3'>
+        <Renderbtn/>
       </div>
     </div>
   );

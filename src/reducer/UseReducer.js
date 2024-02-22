@@ -24,13 +24,13 @@ export const useremailreducer = (state, action) => {
   }
 }
 
-//get doctor name
-export const doctorName = localStorage.getItem("docname")
-export const docnamereducer = (state=doctorName, action) =>
-{
+//username
+export const userNames = localStorage.getItem("username");
+
+export const usernameReducer = (state, action) => {
   switch (action.type) {
-    case "DOCTORNAME":
-      localStorage.setItem("docname", action.payload);
+    case "USERNAME":
+      localStorage.setItem("username", action.payload);
       return action.payload;
     default:
       return state;

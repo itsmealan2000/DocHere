@@ -14,6 +14,10 @@ export const getProfileApi = (useremail) => {
     return commonApi("GET", `${SERVER_URL}/profile?email=${useremail}`,);
 }
 
+export const getAllUsersApi = async (user)=>{
+    return await commonApi("GET",`${SERVER_URL}/getallusers`, user, "")
+}
+
 // doctors
 export const addDoctorApi = async (doctor)=>{
     return await commonApi("POST",`${SERVER_URL}/adddoctor`, doctor, "")
@@ -38,4 +42,13 @@ export const searchMedicineApi = (medicine)=> {
 
 export const changeStockApi = async (medicine)=>{
     return await commonApi("PUT",`${SERVER_URL}/changestock`, medicine, "")
+}
+
+//bills
+export const addBillApi = async (bill)=>{
+    return await commonApi("POST",`${SERVER_URL}/addbill`, bill, "")
+}
+
+export const getUserBillApi = async (bill)=>{
+    return await commonApi("GET",`${SERVER_URL}/getuserbill`, bill, "")
 }

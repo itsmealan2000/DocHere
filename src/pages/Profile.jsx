@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../App';
-import { SERVER_URL } from "../Services/Serverurl"
+import { SERVER_URL } from "../Services/Serverurl";
 
 const Profile = () => {
-  const { useremail, dispatch1 } = useContext(UserContext);
+  const { useremail } = useContext(UserContext);
   const [userName, setUserName] = useState('');
   const [userAge, setUserAge] = useState('');
   const [userGender, setUserGender] = useState('');
+  const { usernames, dispatch2 } = useContext(UserContext);
 
 
   useEffect(() => {
@@ -23,10 +24,10 @@ const Profile = () => {
         // Parse the JSON data from the response body
         const data = await response.json();
         
-        // Log the parsed JSON data
-        console.log(data);
-        
-        // Set the user name in the state
+        //dispatch2
+        localStorage.setItem("username", data.username);
+        dispatch2({ type: "USERNAME", payload: data.username });
+        // Set the user name, age, and gender in the state
         setUserName(data.username); 
         setUserAge(data.age);
         setUserGender(data.gender);
@@ -49,6 +50,11 @@ const Profile = () => {
           <p>Age : {userAge}</p>
           <p>Gender : {userGender}</p>
         </div>
+        <button className='btn greenbtn'>
+          <a href="/userbills" className='nav-link active'>
+          View My Prescription 
+          </a>
+          </button>
       </div>
     </div>
   );
