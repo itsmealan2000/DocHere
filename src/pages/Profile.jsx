@@ -3,7 +3,7 @@ import { UserContext } from '../App';
 import { SERVER_URL } from "../Services/Serverurl";
 
 const Profile = () => {
-  const { useremail } = useContext(UserContext);
+  const { useremail,dispatch1 } = useContext(UserContext);
   const [userName, setUserName] = useState('');
   const [userAge, setUserAge] = useState('');
   const [userGender, setUserGender] = useState('');
@@ -12,7 +12,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      try {I
+      try {
         const response = await fetch(`${SERVER_URL}/profile?email=${useremail}`);
         
         if (!response.ok) {
